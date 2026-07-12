@@ -1,0 +1,16 @@
+langchain==0.3.27
+langchain-community==0.3.27
+langchain-google-genai==2.0.10
+langchain-huggingface==0.1.2
+python-dotenv==1.1.1
+streamlit==1.47.1
+faiss-cpu==1.11.0
+sentence-transformers==5.0.0
+InstructorEmbedding==1.0.1
+tiktoken==0.9.0
+protobuf==6.31.1
+tf-keras
+sentence-transformers==5.0.0
+langchain-huggingface==0.1.2
+ddgs
+
