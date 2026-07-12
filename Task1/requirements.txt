@@ -1,13 +1,13 @@
 langchain==0.3.27
 langchain-community==0.3.27
-langchain-google-genai==2.0.10
-langchain-huggingface==0.1.2
+langchain-google-genai==2.1.8
+langchain-huggingface==0.3.1
 python-dotenv==1.1.1
 streamlit==1.47.1
-faiss-cpu
+faiss-cpu==1.11.0
 sentence-transformers==5.0.0
 InstructorEmbedding==1.0.1
 tiktoken==0.11.0
-protobuf==5.29.5
-ddgs
+protobuf==6.31.1
+ddgs==9.5.2
 
