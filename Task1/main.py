@@ -33,19 +33,20 @@ if st.button("Create Knowledgebase"):
 question = st.text_input("Ask your question")
 
 if question:
+  with st.spinner("Searching..."):
 
-    with st.spinner("Searching..."):
+     chain = get_qa_chain()
 
-        chain = get_qa_chain()
+     response = chain.invoke({"input": question})
 
-        response = chain.invoke({"query": question})
-
-        answer = response["result"].strip()
+     answer = response["answer"].strip()
+    
+    
 
     # ---------------------------------
     # If answer not found in FAISS
     # ---------------------------------
-    if "don't know" in answer.lower():
+     if "don't know" in answer.lower():
 
         st.info("Searching the web...")
 
@@ -67,6 +68,6 @@ if question:
     # ---------------------------------
     # Display Final Answer
     # ---------------------------------
-    st.subheader("Answer")
+     st.subheader("Answer")
 
-    st.write(answer)
+     st.write(answer)
