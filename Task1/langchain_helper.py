@@ -28,9 +28,11 @@ embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2"
 )
 
-VECTOR_DB = "faiss_index"
-DATASET = "dataset.csv"
-KNOWLEDGE_UPDATES = "knowledge_updates.csv"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+VECTOR_DB = os.path.join(BASE_DIR, "faiss_index")
+DATASET = os.path.join(BASE_DIR, "dataset.csv")
+KNOWLEDGE_UPDATES = os.path.join(BASE_DIR, "knowledge_updates.csv")
 
 
 def create_vector_db():
