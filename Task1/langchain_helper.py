@@ -11,11 +11,16 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains.retrieval import create_retrieval_chain
-
+import streamlit as st
 # Load Environment Variables
 load_dotenv()
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-
+if not GOOGLE_API_KEY:
+    GOOGLE_API_KEY = st.secrets.get("GOOGLE_API_KEY")
+if not GOOGLE_API_KEY:
+    raise ValueError(
+        "GOOGLE_API_KEY is missing. Add it to Streamlit Secrets or your .env file."
+    )
 # Gemini Model
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
