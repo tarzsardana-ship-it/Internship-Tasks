@@ -65,6 +65,8 @@ def create_vector_db():
 
 
 def get_qa_chain():
+    if not os.path.exists(VECTOR_DB):
+        create_vector_db()
 
     vectordb = FAISS.load_local(
         VECTOR_DB,
