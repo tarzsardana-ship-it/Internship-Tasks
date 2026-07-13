@@ -1,40 +1,46 @@
 # 🤖 Customer Service Chatbot with Dynamic Knowledge Base
+
 ## 📌 Project Overview
 This project is an AI-powered Customer Service Chatbot built using LangChain, Google Gemini, FAISS, Hugging Face Embeddings, and Streamlit.
-The chatbot answers user queries using a custom knowledge base created from a CSV dataset. If an answer is unavailable, it automatically searches the web, returns the result, stores the new information, and updates its vector database. This enables the chatbot to continuously expand its knowledge over time.
+The chatbot answers user queries using a custom knowledge base created from a CSV dataset. When the required information is unavailable in the knowledge base, it automatically searches the web, retrieves relevant information, stores it, and updates the vector database. This enables the chatbot to continuously expand its knowledge base and provide improved responses over time.
+---
+
+# 🔗 Project Links
+**GitHub Repository**
+https://github.com/tarzsardana-ship-it/Internship-Tasks/tree/main/Task1
+
+**Live Streamlit Application**
+https://internship-task-1.streamlit.app/
+---
 
 # 🎯 Problem Statement
-Develop a chatbot capable of dynamically expanding its knowledge base.
-The chatbot should:
-- Answer questions using a custom dataset.
-- Detect when information is unavailable.
-- Search the web for missing information.
-- Store newly discovered knowledge.
-- Update the vector database automatically.
-- Improve responses over time without manual dataset editing.
+Implement a system for dynamically expanding the chatbot's knowledge base. Create a mechanism to periodically update the vector database with new information from specified sources. The chatbot should automatically incorporate new information into its responses over time.
+---
 
 # 🚀 Features
-- Customer Service Chatbot
+- AI-powered Customer Service Chatbot
 - Retrieval-Augmented Generation (RAG)
-- Google Gemini LLM
+- Google Gemini Integration
 - FAISS Vector Database
-- Hugging Face Sentence Transformers
+- Hugging Face Sentence Transformer Embeddings
 - Automatic Web Search using DDGS
 - Dynamic Knowledge Base Expansion
 - Automatic Vector Database Update
 - Duplicate Question Detection
-- Streamlit Web Interface
+- Interactive Streamlit Web Interface
+---
 
-# 🛠 Technologies Used
+# 🛠️ Technologies Used
 - Python
 - Streamlit
 - LangChain
 - Google Gemini API
-- Hugging Face Embeddings
+- Hugging Face Sentence Transformers
 - FAISS
 - DDGS (DuckDuckGo Search)
 - CSV
-- dotenv
+- python-dotenv
+---
 
 # 📂 Project Structure
 Task1/
@@ -43,99 +49,88 @@ Task1/
 ├── langchain_helper.py
 ├── dataset.csv
 ├── knowledge_updates.csv
-├── .env.example
 ├── requirements.txt
-├── .streamlit/
-│   └── secrets.toml
+├── .env.example
 └── README.md
+---
 
 # 📊 Dataset
-The chatbot uses:
-- dataset.csv (original knowledge)
-- knowledge_updates.csv (new knowledge learned automatically)
-Dataset Columns:
-| prompt | response |
-|---------|-----------|
+The chatbot uses two CSV files:
+
+- **dataset.csv** – Contains the initial knowledge base.
+- **knowledge_updates.csv** – Stores newly discovered question-answer pairs obtained through web search.
+Both datasets use the following columns: prompt and response
+---
 
 # ⚙️ Methodology
-### Step 1
-Load the dataset using CSVLoader.
-### Step 2
-Generate embeddings using:
-sentence-transformers/all-MiniLM-L6-v2
-### Step 3
-Store embeddings in a FAISS Vector Database.
-### Step 4
-User enters a question.
-### Step 5
-Retrieve the most relevant documents using FAISS.
-### Step 6
-Google Gemini generates an answer.
-### Step 7
-If Gemini cannot answer:
-- Perform web search using DDGS.
-- Retrieve relevant information.
-- Save the new Question–Answer pair in knowledge_updates.csv.
-- Rebuild the FAISS knowledge base automatically.
-This allows the chatbot to continuously learn from new information.
+1. Load the dataset using LangChain's CSVLoader.
+2. Generate embeddings using the **sentence-transformers/all-MiniLM-L6-v2** model.
+3. Store embeddings in a FAISS Vector Database.
+4. Retrieve relevant documents based on the user's query.
+5. Generate responses using Google Gemini.
+6. If the answer is unavailable:
+   - Search the web using DDGS.
+   - Retrieve relevant information.
+   - Save the new question-answer pair in knowledge_updates.csv.
+   - Rebuild the FAISS vector database automatically.
+7. Return the updated response to the user.
+---
 
 # 🔄 Workflow
+
 User Question
       │
       ▼
- FAISS Search
+Retrieve Relevant Documents
       │
       ▼
-Gemini Response
+ Google Gemini
       │
       ▼
-Answer Found?
+Answer Available?
       │
  ┌────┴────┐
  │         │
 Yes        No
  │         │
  ▼         ▼
-Return   Web Search
+Return   Search Web
 Answer      │
             ▼
- Save to knowledge_updates.csv
+Store New Knowledge
             │
             ▼
- Rebuild FAISS Index
+Update FAISS Database
             │
             ▼
- Return Updated Answer
+Return Updated Answer
+
+---
 
 # ▶️ Installation
-Clone the repository:
-git clone 
 
-Install dependencies:
+Clone the repository:
+git clone https://github.com/tarzsardana-ship-it/Internship-Tasks.git
+
+Navigate to the project folder:
+cd Internship-Tasks/Task1
+
+Install the required dependencies:
 pip install -r requirements.txt
 
-Add your Gemini API Key.
-For Streamlit Cloud:
-.streamlit/secrets.toml
-GOOGLE_API_KEY="YOUR_API_KEY"
+Create a .env file (or configure Streamlit Secrets) and add your Google Gemini API key:
+GOOGLE_API_KEY=YOUR_API_KEY
 
 Run the application:
 streamlit run main.py
 
-# 📸 Application
-The application provides:
-- Create Knowledge Base button
-- Question Input
-- AI Generated Answer
-- Automatic Web Search
-- Dynamic Knowledge Base Update
-  
+---
+
 # 📈 Results
-Successfully implemented:
-✅ Customer Service Chatbot
-✅ Dynamic Knowledge Base
-✅ Automatic Web Search
-✅ FAISS Vector Database
-✅ Retrieval-Augmented Generation (RAG)
-✅ Automatic Knowledge Base Expansion
-✅ Streamlit Deployment
+The chatbot successfully:
+- Answers questions using a custom knowledge base.
+- Retrieves contextual information using FAISS.
+- Searches the web when information is unavailable.
+- Automatically stores newly acquired knowledge.
+- Updates the vector database without manual intervention.
+- Provides continuously improving responses through dynamic knowledge expansion.
