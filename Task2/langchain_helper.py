@@ -35,7 +35,6 @@ llm = ChatGoogleGenerativeAI(
 embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2"
 )
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 VECTOR_DB = os.path.join(BASE_DIR, "faiss_index")
