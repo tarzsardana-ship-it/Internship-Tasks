@@ -1,37 +1,37 @@
-# 🤖 Multimodal AI Customer Support Assistant 
+# 🩺 AI Medical Question Answering Assistant
 
 ## 📌 Project Overview
 
-This project is a Multimodal AI Customer Support Assistant developed using Streamlit, LangChain, Google Gemini, FAISS, and DuckDuckGo Search.
+This project is an AI-powered Medical Question Answering Assistant developed using Streamlit, LangChain, Google Gemini, FAISS, HuggingFace Embeddings, and the MedQuAD dataset.
 
-The assistant answers customer questions using a FAISS knowledge base. If an answer is not available in the dataset, it searches the web, generates an answer using Gemini, and updates its knowledge base automatically. It also allows users to upload an image and ask questions related to it using Gemini Vision.
+The assistant answers medical questions using a FAISS-based knowledge base created from the MedQuAD dataset. If the required answer is not available in the knowledge base, it searches the web, generates an answer using Google Gemini, and automatically updates its knowledge base for future queries.
 
 ---
 
 ## 🌐 Live Demo
 
 **Streamlit App:**  
-https://internship-task-2.streamlit.app/
+https://internship-task-3.streamlit.app/
 
 **GitHub Repository:**  
-https://github.com/tarzsardana-ship-it/Internship-Tasks/tree/main/Task2
+https://github.com/tarzsardana-ship-it/Internship-Tasks/tree/main/Task3
 
 ---
 
 ## 📌 Problem Statement
 
-Build a Multimodal AI Customer Support Assistant that can answer customer queries using a knowledge base, search the web when required, update its knowledge automatically, and understand uploaded images using Google's Gemini Vision model.
+Build an AI-powered Medical Question Answering Assistant capable of answering healthcare-related questions using the MedQuAD dataset. If the answer is unavailable, the assistant should retrieve relevant information from the web, generate a response using Google Gemini, and update its knowledge base dynamically.
 
 ---
 
 ## 🚀 Features
 
-- 📚 Knowledge Base using FAISS
-- 💬 Customer Question Answering
+- 🩺 Medical Question Answering
+- 📚 FAISS-based Medical Knowledge Base
+- 🤖 Google Gemini Integration
 - 🌐 Automatic Web Search for Unknown Questions
 - 🔄 Dynamic Knowledge Base Updates
-- 🖼️ Image Upload Support
-- 🤖 Image Analysis using Gemini Vision
+- 📄 MedQuAD Dataset Integration
 - ⚡ Streamlit Web Application
 
 ---
@@ -42,21 +42,23 @@ Build a Multimodal AI Customer Support Assistant that can answer customer querie
 - Streamlit
 - LangChain
 - Google Gemini API
-- Google GenAI SDK
 - HuggingFace Embeddings
 - FAISS
 - DuckDuckGo Search (DDGS)
-- Pillow
+- Pandas
+- XML Parser (ElementTree)
 
 ---
 
 ## 📂 Project Structure
 
-```
-Task2/
+```text
+Task3/
 │── main.py
 │── langchain_helper.py
+│── convert_medquad_to_csv.py
 │── dataset.csv
+│── medical_dataset.csv
 │── knowledge_updates.csv
 │── requirements.txt
 │── .env.example
@@ -76,7 +78,7 @@ git clone https://github.com/tarzsardana-ship-it/Internship-Tasks.git
 ### 2. Navigate to the Project Folder
 
 ```bash
-cd Internship-Tasks/Task2
+cd Internship-Tasks/Task3
 ```
 
 ### 3. Install Dependencies
@@ -103,21 +105,20 @@ streamlit run main.py
 
 ## 📸 How It Works
 
-1. Create the Knowledge Base.
-2. Ask customer support questions.
-3. If the answer exists in the dataset, it is retrieved from the FAISS knowledge base.
-4. If the answer is not found, the assistant searches the web, generates an answer using Gemini, and updates its knowledge base automatically.
-5. Upload an image and ask questions related to it.
-6. Gemini Vision analyzes the image and provides an intelligent response.
+1. Convert the MedQuAD XML dataset into a CSV file using `convert_medquad_to_csv.py`.
+2. Create the FAISS knowledge base from the customer dataset, medical dataset, and knowledge updates.
+3. Ask a medical question through the Streamlit interface.
+4. If the answer exists in the knowledge base, it is retrieved instantly.
+5. If the answer is unavailable, the assistant searches the web and generates an answer using Google Gemini.
+6. The newly generated answer is automatically saved and added to the knowledge base for future use.
 
 ---
 
 ## 📊 Results
 
-- Successfully built and deployed a Multimodal AI Customer Support Assistant.
-- Retrieves answers from a FAISS-based knowledge base.
-- Performs automatic web search when an answer is unavailable in the dataset.
-- Updates the knowledge base dynamically with newly learned information.
-- Accepts image uploads and answers questions based on image content using Gemini Vision.
+- Successfully built an AI-powered Medical Question Answering Assistant.
+- Retrieves medical answers from a FAISS-based knowledge base.
+- Uses the MedQuAD dataset containing thousands of medical question-answer pairs.
+- Performs automatic web search when required.
+- Dynamically updates the knowledge base with newly learned information.
 - Successfully deployed on Streamlit Cloud with an interactive user interface.
-
