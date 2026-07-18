@@ -217,7 +217,7 @@ def update_knowledge_base(question, answer):
 
             writer.writerow([question, answer])
 
-        create_vector_db()
+        #create_vector_db()
 
         print("Knowledge Base Updated Successfully.")
 
