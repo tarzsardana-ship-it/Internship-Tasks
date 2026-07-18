@@ -164,8 +164,19 @@ Using the search results, provide a clear, concise and factual answer.
     except Exception as e:
         print("Web Search Error:", e)
         return None
+#save response in knowledge base without rebuilding faiss index
+def get_saved_answer(question):
+    if not os.path.exists(KNOWLEDGE_UPDATES):
+        return None
 
+    with open(KNOWLEDGE_UPDATES, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
 
+        for row in reader:
+            if row["prompt"].strip().lower() == question.strip().lower():
+                return row["response"]
+
+    return None
 # Update Knowledge Base
 def update_knowledge_base(question, answer):
     try:
