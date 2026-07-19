@@ -173,8 +173,8 @@ def get_saved_answer(question):
         reader = csv.DictReader(f)
 
         for row in reader:
-            if row.get["prompt"].strip().lower() == question.strip().lower():
-                return row.get["response"]
+            if row.get("prompt") and row.get("response") and row.get("prompt").strip().lower() == question.strip().lower():
+                return row.get("response")
 
     return None
 # Update Knowledge Base
