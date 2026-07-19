@@ -164,7 +164,7 @@ Using the search results, provide a clear, concise and factual answer.
     except Exception as e:
         print("Web Search Error:", e)
         return None
-#save response in knowledge base without rebuilding faiss index
+#save response in knowledge base without rebuilding faiss
 def get_saved_answer(question):
     if not os.path.exists(KNOWLEDGE_UPDATES):
         return None
@@ -173,8 +173,8 @@ def get_saved_answer(question):
         reader = csv.DictReader(f)
 
         for row in reader:
-            if row["prompt"].strip().lower() == question.strip().lower():
-                return row["response"]
+            if row.get["prompt"].strip().lower() == question.strip().lower():
+                return row.get["response"]
 
     return None
 # Update Knowledge Base
