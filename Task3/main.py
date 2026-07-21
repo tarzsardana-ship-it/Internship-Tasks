@@ -5,7 +5,6 @@ from langchain_helper import (
     search_web,
     update_knowledge_base,
     analyze_image,
-    get_saved_answer
 )
 
 # ---------------------------------
@@ -15,8 +14,6 @@ st.set_page_config(
     page_title="Customer Service Chatbot",
     page_icon="🤖"
 )
-if "saved_answers" not in st.session_state:
-    st.session_state.saved_answers = {}
 st.title("🤖AI Knowledge Chatbot")
 st.write("""
 This chatbot can answer questions from:
@@ -83,26 +80,15 @@ if question:
     # If answer not found in FAISS
     # ---------------------------------
      if "don't know" in answer.lower():
-        saved_answer = st.session_state.saved_answers.get(
-            question.strip().lower()
-        )
-        if saved_answer:
-            answer = saved_answer
-            st.success("Answer found in knowledge updates")
-        else:
-            st.info("Searching the web...")
-            web_answer = search_web(question)
-            if web_answer:
-            # Save in knowledge_updates.csv
-                update_knowledge_base(question, web_answer)
-                st.session_state.saved_answers[
-                    question.strip().lower()
-                ] = web_answer
-                answer = web_answer
-                st.success("Knowledge Base Updated Successfully!")
-            else:
-                answer = "Sorry, I couldn't find an answer."
+        st.info("Searching the web...")
+        web_answer = search_web(question)
 
+        if web_answer:
+            update_knowledge_base(question, web_answer)
+            answer = web_answer
+            st.success("Knowledge Base Updated Successfully!")
+        else:
+            answer = "Sorry, I couldn't find an answer."
     # ---------------------------------
     # Display Final Answer
     # ---------------------------------
