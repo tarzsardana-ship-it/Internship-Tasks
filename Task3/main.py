@@ -15,7 +15,8 @@ st.set_page_config(
     page_title="Customer Service Chatbot",
     page_icon="🤖"
 )
-
+if "saved_answers" not in st.session_state:
+    st.session_state.saved_answers = {}
 st.title("🤖AI Knowledge Chatbot")
 st.write("""
 This chatbot can answer questions from:
@@ -82,7 +83,9 @@ if question:
     # If answer not found in FAISS
     # ---------------------------------
      if "don't know" in answer.lower():
-        saved_answer = get_saved_answer(question)
+        saved_answer = st.session_state.saved_answers.get(
+            question.strip().lower()
+        )
         if saved_answer:
             answer = saved_answer
             st.success("Answer found in knowledge updates")
@@ -92,6 +95,9 @@ if question:
             if web_answer:
             # Save in knowledge_updates.csv
                 update_knowledge_base(question, web_answer)
+                st.session_state.saved_answers[
+                    question.strip().lower()
+                ] = web_answer
                 answer = web_answer
                 st.success("Knowledge Base Updated Successfully!")
             else:
