@@ -216,7 +216,20 @@ def update_knowledge_base(question, answer):
 
             writer.writerow([question, answer])
 
-        #create_vector_db()
+        # Add only the new document to the existing FAISS index
+        new_doc = Document(
+            page_content=f"prompt: {question}\nresponse: {answer}"
+        )
+
+        vectordb = FAISS.load_local(
+            VECTOR_DB,
+            embeddings,
+            allow_dangerous_deserialization=True
+        )
+
+        vectordb.add_documents([new_doc])
+
+        vectordb.save_local(VECTOR_DB)
 
         print("Knowledge Base Updated Successfully.")
 
