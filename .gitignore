@@ -2,6 +2,8 @@
 .env
 __pycache__/
 .vscode/
-Task3/MedQuad-master/
 Task1/faiss_index/
 Task2/faiss_index/
+Task3/MedQuad-master/
+Task4/MedQuad-master/
+Task4/archive/
