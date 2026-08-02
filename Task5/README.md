@@ -1,95 +1,105 @@
-# 🤖 AI Knowledge & Research Chatbot
+# 🤖 AI Knowledge & Research Chatbot with Sentiment Analysis
 
-## 📌 Project Overview
-
-This project is an AI-powered Knowledge & Research Chatbot developed using **Streamlit, LangChain, Google Gemini, FAISS, HuggingFace Embeddings, and multiple datasets**.
-
-The chatbot can answer questions from:
-
-- Customer Service Dataset
-- Medical Dataset (MedQuAD)
-- Computer Science Research Papers (arXiv)
-
-It also supports **research paper search, paper summarization, concept explanation, research statistics visualization, and image analysis** using Google Gemini.
-
-If an answer is unavailable in the knowledge base, the chatbot automatically performs a web search, generates a response using Google Gemini, and updates its knowledge base for future queries.
+An intelligent AI-powered chatbot developed using **Streamlit**, **LangChain**, **Google Gemini 2.5 Flash**, and **FAISS**. This chatbot answers queries from multiple knowledge sources, performs image understanding, searches research papers, automatically updates its knowledge base using web search, and detects user sentiment to provide context-aware responses.
 
 ---
 
-# 🌐 Live Demo
+# 🚀 Live Demo
 
-### Streamlit App
+### 🌐 Streamlit Application
 
-https://internship-task-4.streamlit.app/
+https://internship-task-5.streamlit.app/
 
-### GitHub Repository
+### 💻 GitHub Repository
 
-https://github.com/tarzsardana-ship-it/Internship-Tasks/tree/main/Task4
+https://github.com/tarzsardana-ship-it/Internship-Tasks/tree/main/Task5
 
 ---
 
 # 📌 Problem Statement
 
-Build an AI-powered Knowledge & Research Chatbot capable of answering customer support, medical, and research-related questions using multiple knowledge sources.
+The objective of this project is to enhance an AI-powered chatbot by integrating **Sentiment Analysis** into the existing knowledge-based chatbot developed in previous tasks. The chatbot should identify the emotional tone of user queries (Positive, Negative, or Neutral) and respond appropriately while continuing to provide accurate answers from multiple knowledge sources.
 
-The chatbot should:
-
-- Answer questions from customer service and medical datasets.
-- Search and retrieve relevant Computer Science research papers.
-- Summarize research papers.
-- Explain technical concepts in simple language.
-- Analyze uploaded images using Google Gemini Vision.
-- Search the web when information is unavailable.
-- Dynamically update its knowledge base for future queries.
+The chatbot also supports image understanding, research paper analysis, medical question answering, customer service assistance, and dynamic knowledge base updates through web search when information is unavailable.
 
 ---
 
-# 🚀 Features
+# 📚 Datasets Used
 
-### 💬 General AI Chat
+### Customer Service Dataset
+Used to answer customer support-related queries.
 
-- Customer Service Question Answering
-- Medical Question Answering
-- Computer Science Research Question Answering
+### MedQuAD Dataset
+Provides answers to healthcare and medical-related questions.
 
-### 📚 Research Paper Features
+### arXiv Computer Science Dataset
+Used for:
+- Research paper search
+- Paper summarization
+- Concept explanation
+- Research statistics
 
-- Search Research Papers
-- Paper Summarization
-- Concept Explanation
-- Research Statistics Visualization
+### Dynamic Knowledge Base
+`knowledge_updates.csv`
 
-### 🧠 AI Features
-
-- Google Gemini Integration
-- FAISS Vector Database
-- HuggingFace Embeddings
-- Dynamic Knowledge Base Updates
-- Automatic Web Search
-- Image Analysis using Gemini Vision
-
-### 📊 Data Visualization
-
-- Top Research Categories
-- Papers Published by Year
-
-### 🌐 User Interface
-
-- Interactive Streamlit Web Application
-- Multiple Chat Modes
-- Fast Semantic Search
+Stores newly learned information obtained from web search so the chatbot continuously improves over time.
 
 ---
 
-# 🛠️ Technologies Used
+# ✨ Features
+
+## ✅ Customer Service Question Answering
+Answers customer support questions using the customer service dataset.
+
+## ✅ Medical Question Answering
+Answers healthcare-related questions using the MedQuAD dataset.
+
+## ✅ Research Paper Search
+Searches Computer Science research papers from the arXiv dataset.
+
+## ✅ Research Paper Summarization
+Generates concise summaries of research papers using Google Gemini.
+
+## ✅ Concept Explanation
+Explains complex technical concepts in simple language.
+
+## ✅ Research Statistics Dashboard
+Displays research statistics with charts using Matplotlib.
+
+## ✅ Image Understanding
+Allows users to upload an image and ask questions about it using Gemini Vision.
+
+## ✅ Dynamic Knowledge Base
+When the answer is unavailable:
+- Searches the web using DuckDuckGo.
+- Generates an answer using Gemini.
+- Saves the new knowledge into `knowledge_updates.csv`.
+- Updates the FAISS knowledge base automatically.
+
+## ✅ Sentiment Analysis (Task 5)
+Detects the user's sentiment before answering.
+
+Supported sentiments:
+- 😊 Positive
+- 😔 Negative
+- 🙂 Neutral
+
+The chatbot generates an appropriate response based on the detected sentiment while continuing to answer the user's query.
+
+---
+
+# ⚙️ Technologies Used
 
 - Python
 - Streamlit
 - LangChain
-- Google Gemini API
+- Google Gemini 2.5 Flash
+- Google Gemini Vision
+- FAISS Vector Database
 - HuggingFace Embeddings
-- FAISS
+- Sentence Transformers
 - DuckDuckGo Search (DDGS)
+- TextBlob
 - Pandas
 - Matplotlib
 - Pillow
@@ -99,51 +109,70 @@ The chatbot should:
 # 📂 Project Structure
 
 ```
-Task4/
-
-│── main.py
-│── langchain_helper.py
-│── dataset.csv
-│── medical_dataset.csv
-│── arxiv_dataset.csv
-│── knowledge_updates.csv
-│── faiss_index/
-│── requirements.txt
-│── .env.example
-│── README.md
+Task5/
+│
+├── main.py
+├── langchain_helper.py
+├── dataset.csv
+├── medical_dataset.csv
+├── arxiv_dataset.csv
+├── knowledge_updates.csv
+├── prepare_arxiv_dataset.py
+├── convert_medquad_to_csv.py
+├── requirements.txt
+├── README.md
+├── faiss_index/
+└── Screenshots/
 ```
+
+---
+
+# 🔄 Methodology / Workflow
+
+1. User enters a question.
+2. Sentiment Analysis detects whether the message is Positive, Negative, or Neutral.
+3. The chatbot searches the FAISS knowledge base.
+4. Gemini generates an answer using the retrieved documents.
+5. If the answer is unavailable:
+   - DuckDuckGo web search is performed.
+   - Gemini generates an answer from web results.
+   - The new information is stored in `knowledge_updates.csv`.
+   - The FAISS knowledge base is updated automatically.
+6. If an image is uploaded, Gemini Vision analyzes the image and answers image-related questions.
+7. The chatbot displays:
+   - Detected Sentiment
+   - Final AI Response
 
 ---
 
 # ⚙️ Installation
 
-## 1. Clone the Repository
+Clone the repository:
 
 ```bash
 git clone https://github.com/tarzsardana-ship-it/Internship-Tasks.git
 ```
 
-## 2. Navigate to the Project Folder
+Go to the project folder:
 
 ```bash
-cd Internship-Tasks/Task4
+cd Internship-Tasks/Task5
 ```
 
-## 3. Install Dependencies
+Install all dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 4. Create a .env File
-
-Add your Google Gemini API key:
+Create a `.env` file:
 
 ```text
-GOOGLE_API_KEY=your_api_key_here
+GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY
+GITHUB_TOKEN=YOUR_GITHUB_TOKEN
 ```
 
-## 5. Run the Application
+Run the application:
 
 ```bash
 streamlit run main.py
@@ -151,79 +180,69 @@ streamlit run main.py
 
 ---
 
-# 📸 How It Works
+# 📸 Results
 
-1. Create the FAISS knowledge base using:
-   - Customer Service Dataset
-   - Medical Dataset (MedQuAD)
-   - arXiv Research Paper Dataset
-   - Knowledge Updates
+### 😊 Positive Sentiment
 
-2. Choose a chat mode from the Streamlit interface.
+**Input**
 
-3. Ask a question, search for a research paper, summarize a paper, explain a concept, or upload an image.
+```
+Thank you so much for helping me.
+```
 
-4. If the answer exists in the knowledge base, it is retrieved instantly.
-
-5. If the answer is unavailable, the chatbot searches the web using DuckDuckGo.
-
-6. Google Gemini generates a response from the retrieved web information.
-
-7. The newly generated answer is automatically stored in the knowledge base for future queries.
+**Output**
+- Sentiment: Positive
+- Friendly response generated before answering the query.
 
 ---
 
-# 💡 Chat Modes
+### 😔 Negative Sentiment
 
-### 🧠 General Chat
+**Input**
 
-Answers questions using:
+```
+I am very disappointed.
+```
 
-- Customer Service Dataset
-- Medical Dataset
-- Research Paper Dataset
-- Dynamic Knowledge Base
-- Web Search (if required)
+**Output**
+- Sentiment: Negative
+- Empathetic response generated before answering.
 
-### 🔍 Research Paper Search
+---
 
-Searches relevant Computer Science research papers from the arXiv dataset.
+### 🙂 Neutral Sentiment
+
+**Input**
+
+```
+What is diabetes?
+```
+
+**Output**
+- Sentiment: Neutral
+- Medical answer retrieved from the knowledge base.
+
+---
+
+### 📚 Research Paper Search
+Searches relevant Computer Science papers using the arXiv dataset.
+
+---
 
 ### 📄 Paper Summarization
+Generates concise summaries of research papers.
 
-Generates an easy-to-understand summary of research papers using Google Gemini.
+---
 
 ### 💡 Concept Explanation
+Explains technical concepts in simple language.
 
-Explains technical concepts in beginner-friendly language using research paper abstracts.
+---
+
+### 📷 Image Analysis
+Analyzes uploaded images using Gemini Vision.
+
+---
 
 ### 📊 Research Statistics
-
-Displays:
-
-- Top Research Categories
-- Number of Papers Published by Year
-
----
-
-# 📷 Image Analysis
-
-Upload an image and ask questions related to it.
-
-Google Gemini Vision analyzes the uploaded image and generates an intelligent response.
-
----
-
-# 📊 Results
-
-- Successfully built an AI-powered Knowledge & Research Chatbot.
-- Retrieves information from Customer Service, Medical, and Research Paper datasets.
-- Supports semantic search using FAISS.
-- Searches Computer Science research papers.
-- Generates paper summaries.
-- Explains technical concepts in simple language.
-- Displays research statistics through interactive visualizations.
-- Performs image analysis using Google Gemini Vision.
-- Automatically searches the web when required.
-- Dynamically updates its knowledge base with newly learned information.
-- Successfully deployed on Streamlit Cloud with an interactive user interface.
+Displays charts showing research categories and publication trends.
