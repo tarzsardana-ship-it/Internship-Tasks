@@ -14,5 +14,5 @@ Pillow==11.3.0
 pandas==2.3.1
 matplotlib==3.10.5
 textblob==0.20.1
-lingua-language-detector==2.2.0
+lingua-language-detector==2.1.1
 deep-translator==1.11.4
