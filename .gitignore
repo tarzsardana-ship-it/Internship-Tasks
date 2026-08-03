@@ -2,10 +2,5 @@
 .env
 __pycache__/
 .vscode/
-Task1/faiss_index/
-Task2/faiss_index/
-Task3/MedQuad-master/
-Task4/MedQuad-master/
-Task4/archive/
-Task5/MedQuad-master/
-Task5/archive/
+MedQuad-master/
+archive/
