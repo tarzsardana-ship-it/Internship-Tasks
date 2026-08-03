@@ -111,7 +111,7 @@ def get_qa_chain():
     )
 
     retriever = vectordb.as_retriever(
-        search_kwargs={"k": 3}
+        search_kwargs={"k": 5}
     )
 
     prompt = ChatPromptTemplate.from_template(
