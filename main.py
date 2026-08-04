@@ -1,5 +1,6 @@
 import streamlit as st
 import matplotlib.pyplot as plt
+import re
 from langchain_helper import (
     create_vector_db,
     get_qa_chain,
@@ -184,6 +185,8 @@ if question:
             user_language = detect_language(question)
             #translate to english if needed
             english_question = translate_to_english(question,user_language)
+            #normalise the question
+            english_question = re.sub(r'[^\w\s]', '', english_question).strip().lower()
             sentiment, emoji, prefix = analyze_sentiment(question)
             chain = get_qa_chain()
 

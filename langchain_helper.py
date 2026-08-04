@@ -16,6 +16,7 @@ from langchain_core.documents import Document
 import pandas as pd
 from collections import Counter
 from textblob import TextBlob
+import re
 # Load Environment Variables
 load_dotenv()
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -242,6 +243,7 @@ def analyze_sentiment(text):
     )
 # Update Knowledge Base
 def update_knowledge_base(question, answer):
+    question = re.sub(r'[^\w\s]', '', question).strip().lower()
     try:
         existing_questions = set()
 
