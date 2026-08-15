@@ -204,7 +204,6 @@ if question:
             """
 
             response = chain.invoke({"input": english_question})
-            st.write(response)
             answer = response["answer"].strip()
             normalized_question = english_question.strip().lower()
             #don't search web for common questions 
