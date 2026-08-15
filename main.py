@@ -203,27 +203,28 @@ if question:
             {english_question}
             """
 
-            response = chain.invoke({"input": full_question})
-
+            response = chain.invoke({"input": english_question})
+            st.write(response)
             answer = response["answer"].strip()
-
+            normalized_question = english_question.strip().lower()
+            #don't search web for common questions 
             if "don't know" in answer.lower():
-
-                st.info("Searching the web...")
-
-                web_answer = search_web(question)
-
-                if web_answer:
-
-                    update_knowledge_base(question, web_answer)
-
-                    answer = web_answer
-
-                    st.success("Knowledge Base Updated Successfully!")
-
-                else:
-
-                    answer = "Sorry, I couldn't find an answer."
+                if normalized_question not in [
+                "what is your name",
+                "who are you",
+                "who made you",
+                "hello",
+                "hi",
+                "hey"
+            ]:
+                    st.info("Searching the web...")
+                    web_answer = search_web(question)
+                    if web_answer:
+                        update_knowledge_base(question, web_answer)
+                        answer = web_answer
+                        st.success("Knowledge Base Updated Successfully!")
+                    else:
+                        answer = "Sorry, I couldn't find an answer."
             #translate answer back to user's language
             answer = translate_from_english(answer,user_language)
             # Save conversation history (stored in English)
