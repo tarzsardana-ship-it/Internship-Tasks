@@ -203,8 +203,9 @@ if question:
             {english_question}
             """
 
-            response = chain.invoke({"input": english_question})
+            response = chain.invoke({"input": full_question})
             answer = response["answer"].strip()
+            english_answer = answer
             normalized_question = english_question.strip().lower()
             #don't search web for common questions 
             if "don't know" in answer.lower():
@@ -225,10 +226,10 @@ if question:
                     else:
                         answer = "Sorry, I couldn't find an answer."
             #translate answer back to user's language
-            answer = translate_from_english(answer,user_language)
+            answer = translate_from_english(english_answer,user_language)
             # Save conversation history (stored in English)
             st.session_state.chat_history.append(
-                (english_question, answer)
+                (english_question, english_answer)
             )
 
             # Keep only the latest 10 exchanges

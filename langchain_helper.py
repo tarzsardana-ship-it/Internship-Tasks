@@ -129,6 +129,8 @@ Rules:
 2. If the context contains a line starting with "response:" or "Answer:", use that as the answer.
 3. Do not say "I don't know" if the answer is present in the context.
 4. Only reply exactly "I don't know." if the answer is NOT present in the context.
+5. The input may contain Conversation History. Use it to understand the context of the question.
+6. If the current question refers to previous answers using words like "this", "that", "it", "explain this", "translate this", etc., first use the Conversation History to find the referenced answer, then use that answer to respond to the current question.
 
 Context:
 {context}
