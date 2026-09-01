@@ -100,7 +100,34 @@ def create_vector_db():
     )
 
     vectordb.save_local(VECTOR_DB)
+def get_dataset_answer(question):
+    try:
+        normalized_question = re.sub(
+            r'[^\w\s]', '', question
+        ).strip().lower()
 
+        if os.path.exists(DATASET):
+
+            with open(DATASET, "r", encoding="utf-8") as f:
+
+                reader = csv.DictReader(f)
+
+                for row in reader:
+
+                    dataset_question = re.sub(
+                        r'[^\w\s]', '',
+                        row["prompt"]
+                    ).strip().lower()
+
+                    if dataset_question == normalized_question:
+
+                        return row["response"]
+
+        return None
+
+    except Exception as e:
+        print("Dataset Search Error:", e)
+        return None
 def get_qa_chain():
     if not os.path.exists(VECTOR_DB):
         create_vector_db()
