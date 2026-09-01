@@ -71,6 +71,8 @@ You can also:
 • Explain technical concepts
 
 • Ask follow-up questions
+
+Supported Languages: English, Hindi, Spanish, French
 """)
 
 
